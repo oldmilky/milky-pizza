@@ -1,0 +1,128 @@
+.cards {
+    max-width: 1440px;
+    background-color: #FFF4D7;
+    margin: 0 auto;
+
+    grid-gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 326px);
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card__image {
+    width: 250px;
+    height: 250px;
+}
+
+.card__title {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 35px;
+    color: #000000;
+    margin: 10px 0 15px;
+}
+
+.card__wrapper {
+    background-color: #FFEBB8;
+    /* width: 370px; */
+    padding: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card__wrapper:first-of-type {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.card__button {
+    background-color: #FFEBB8;
+    border: none;
+    outline: none;
+    padding: 8px 30px 8px 30px;
+    margin: 0;
+    border-radius: 15px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.card__button-active {
+    background-color: #FF9E44;
+    border: none;
+    outline: none;
+    padding: 8px 30px 8px 30px;
+    margin: 0;
+    border-radius: 15px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #FFF4D7;
+}
+
+.card__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.card__add {
+    background-color: #FFF4D7;
+    border: 2px solid #FF9E44;
+    outline: none;
+    width: 150px;
+    height: 50px;
+    margin: 0 15px 0 0;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__add_plus {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 35px;
+    color: #FF9E44;
+    margin: 0 5px 0 0;
+}
+
+.card__add_plus:last-of-type {
+    margin: 0 0 0 5px;
+}
+
+.card__text {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+}
