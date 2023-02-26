@@ -51,7 +51,7 @@
     background-color: #FFEBB8;
     border: none;
     outline: none;
-    padding: 8px 30px 8px 30px;
+    padding: 8px 25px 8px 25px;
     margin: 0;
     border-radius: 15px;
     font-family: 'Nunito';
@@ -60,9 +60,10 @@
     font-size: 16px;
     line-height: 22px;
     color: #000000;
+    cursor: pointer;
 }
 
-.card__button-active {
+.card__button_active {
     background-color: #FF9E44;
     border: none;
     outline: none;
@@ -75,6 +76,7 @@
     font-size: 16px;
     line-height: 22px;
     color: #FFF4D7;
+    cursor: pointer;
 }
 
 .card__wrap {
