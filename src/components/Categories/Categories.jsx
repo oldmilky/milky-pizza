@@ -1,21 +1,23 @@
 import { useState } from "react";
 import "./Categories.css";
 
-function Categories() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+function Categories({ categoryId, setCategoryId, sortType, setSortType }) {
   const categories = ["Все", "Мясные", "Вегетарианская", "Гриль", "Острые"];
 
   const [activePopup, setActivePopup] = useState(false);
 
-  const sort = ["Популярности", "Цене", "Алфавиту"];
-
-  const [selectedSort, setSelectedSort] = useState(0);
+  const sortList = [
+    { name: "Популярности ↑", sortProperty: "rating" },
+    { name: "Популярности ↓", sortProperty: "-rating" },
+    { name: "Цене ↑", sortProperty: "price" },
+    { name: "Цене ↓", sortProperty: "-price" },
+    { name: "Алфавиту", sortProperty: "title" },
+  ];
 
   const onClickSelected = (index) => {
-    setSelectedSort(index)
+    setSortType(index);
     setActivePopup(false);
-  }
+  };
 
   return (
     <div className="categories">
@@ -24,9 +26,9 @@ function Categories() {
           {categories.map((value, index) => (
             <button
               key={index}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => setCategoryId(index)}
               className={
-                activeIndex === index
+                categoryId === index
                   ? "categories__button-active"
                   : "categories__button"
               }
@@ -40,22 +42,22 @@ function Categories() {
           onClick={() => setActivePopup(!activePopup)}
         >
           <p className="categories__sort">Сортировка по:</p>
-          <p className="categories__filter">{sort[selectedSort]}</p>
+          <p className="categories__filter">{sortType.name}</p>
         </div>
         {activePopup && (
           <div className="categories-modal">
             <div className="categories-modal__content">
-              {sort.map((name, index) => (
+              {sortList.map((obj, index) => (
                 <button
                   key={index}
                   className={
-                    selectedSort === index
+                    sortType.sortProperty === obj.sortProperty
                       ? "categories-modal__button-active"
                       : "categories-modal__button"
                   }
-                  onClick={() => onClickSelected(index)}
+                  onClick={() => onClickSelected(obj)}
                 >
-                  {name}
+                  {obj.name}
                 </button>
               ))}
             </div>

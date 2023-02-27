@@ -9,6 +9,16 @@
     justify-content: center;
 }
 
+.cards__title {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 44px;
+    color: #000000;
+    margin: 0 0 50px 0;
+}
+
 .card {
     display: flex;
     flex-direction: column;
@@ -64,10 +74,10 @@
 }
 
 .card__button_active {
-    background-color: #FF9E44;
+    background-color: #FFF4D7;
     border: none;
     outline: none;
-    padding: 8px 30px 8px 30px;
+    padding: 8px 25px 8px 25px;
     margin: 0;
     border-radius: 15px;
     font-family: 'Nunito';
@@ -75,7 +85,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-    color: #FFF4D7;
+    color: #000000;
     cursor: pointer;
 }
 

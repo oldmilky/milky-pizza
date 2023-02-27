@@ -6,7 +6,6 @@ function Main() {
   return (
     <div className="main">
       <div className="main__content">
-        <h1 className="main__title">Все пиццы</h1>
         <Cards />
         <div className="main__pagination">
           <button className="main__number">1</button>

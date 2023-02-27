@@ -39,8 +39,8 @@ function Card({ title, price, sizes, types }) {
             </button>
           ))}
         </div>
-        <div className="card__wrap" onClick={() => setCount(count + 1)}>
-          <button className="card__add">
+        <div className="card__wrap">
+          <button className="card__add" onClick={() => setCount(count + 1)}>
             <span className="card__add_plus">+</span>Добавить
             <span className="card__add_plus">{count}</span>
           </button>

@@ -1,11 +1,11 @@
 import React from "react";
 import "./Header.css";
 import logo from "../../images/logo.svg";
-import search from "../../images/header__search_logo.svg";
-import cart from "../../images/cart.svg";
+import cart from "../../images/cart__header.svg";
 import { NavLink } from "react-router-dom";
+import Search from "../Search/Search";
 
-function Header() {
+function Header({searchValue, setSearchValue}) {
   return (
     <div className="header">
       <div className="header__content">
@@ -18,20 +18,14 @@ function Header() {
             <p className="header__subtitle">Лучшая пицца разработчика</p>
           </div>
         </div>
-        <div className="header__input">
-          <img className="header__search_logo" src={search} alt="search" />
-          <input
-            className="header__search"
-            type="text"
-            placeholder="Поиск пиццы"
-            alt="поиск пиццы"
-          />
-        </div>
-        <button className="header__cart">
-          3000 ₽
-          <img className="header__cart_logo" src={cart} alt="cart" />
-          10
-        </button>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <NavLink className="header__link" to="/cart">
+          <button className="header__cart">
+            0 ₽
+            <img className="header__cart_logo" src={cart} alt="cart" />
+            0
+          </button>
+        </NavLink>
       </div>
     </div>
   );

@@ -14,6 +14,25 @@
     position: relative;
 }
 
+@media screen and (max-width: 1200px) {
+    .categories__container {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.categories__buttons {
+    display: flex;
+}
+
+@media screen and (max-width: 1200px) {
+    .categories__buttons {
+        width: 100%;
+        overflow-x: scroll;
+        margin: 0 0 20px 0;
+    }
+}
+
 .categories__button {
     background-color: #FFEBB8;
     border: none;
@@ -51,6 +70,7 @@
 .categories__wrap {
     display: flex;
     cursor: pointer;
+    align-items: center;
 }
 
 .categories__sort {
@@ -82,6 +102,13 @@
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
     border-radius: 10px;
     overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+    .categories-modal {
+        right: 350px;
+        top: 60px;
+    }
 }
 
 .categories-modal__content {

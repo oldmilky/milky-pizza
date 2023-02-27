@@ -1,11 +1,9 @@
 import "./pages.css";
-import Header from "../components/Header/Header";
 import { NavLink } from "react-router-dom";
 
-function NotFound() {
+function NotFoundPage() {
   return (
     <>
-      <Header />
       <div className="notfound">
         <h1 className="notfound__title">Ничего не найдено :(</h1>
         <NavLink className="notfound__link" to="/">
@@ -16,4 +14,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;
