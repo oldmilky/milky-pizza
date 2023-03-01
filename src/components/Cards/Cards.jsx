@@ -4,8 +4,13 @@ import SkeletonLoader from "./SketelonLoader";
 import "./Cards.css";
 import Categories from "../Categories/Categories";
 import Pagination from "../Pagination/Pagination";
+import { SearchContext } from "../../App";
+import { useContext } from "react";
 
-function Cards({ searchValue, setSearchValue }) {
+function Cards() {
+
+  const { searchValue } = useContext(SearchContext)
+
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);

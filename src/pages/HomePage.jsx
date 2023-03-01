@@ -1,9 +1,9 @@
 import Main from "../components/Main/Main";
 
-function HomePage({searchValue, setSearchValue}) {
+function HomePage() {
   return (
     <>
-      <Main searchValue={searchValue} setSearchValue={setSearchValue} />
+      <Main />
     </>
   );
 }

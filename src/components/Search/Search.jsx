@@ -1,7 +1,12 @@
 import "./Search.css";
 import search from "../../images/header__search_logo.svg";
+import { useContext } from "react";
+import { SearchContext } from "../../App";
 
-function Search({searchValue, setSearchValue}) {
+function Search() {
+
+  const { searchValue, setSearchValue } = useContext(SearchContext)
+
   return (
     <div className="search">
       <div className="search__container">
