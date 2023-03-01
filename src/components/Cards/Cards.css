@@ -48,6 +48,7 @@
     border-top-right-radius: 0;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    width: 310px;
 }
 
 .card__wrapper:first-of-type {

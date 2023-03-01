@@ -1,16 +1,22 @@
-import './Search.css';
+import "./Search.css";
 import search from "../../images/header__search_logo.svg";
 
-function Search() {
+function Search({searchValue, setSearchValue}) {
   return (
     <div className="search">
-      <img className="search__logo" src={search} alt="search" />
-      <input
-        className="search__input"
-        type="text"
-        placeholder="Поиск пиццы"
-        alt="поиск пиццы"
-      />
+      <div className="search__container">
+        <img className="search__logo" src={search} alt="search" />
+        <input
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
+          className="search__input"
+          type="text"
+          placeholder="Поиск пиццы"
+        />
+      </div>
+      {
+        searchValue && <p className="search__cancel" onClick={() => setSearchValue('')}>x</p>
+      }
     </div>
   );
 }

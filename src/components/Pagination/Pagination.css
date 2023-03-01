@@ -1,0 +1,45 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    margin: 75px 0 0;
+    padding: 0;
+}
+
+.pagination li {
+    padding: 5px;
+    border: 2px solid #FF9E44;
+    border-radius: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.pagination .next {
+    margin: 0;
+}
+
+.selected {
+    background-color: #FF9E44;
+    color: #FFF4D7;
+}
+
+.selected a {
+    color: #FFF4D7;
+}
+
+.pagination li:hover{
+    background-color: #FF9E44;
+    color: #FFF4D7;
+}

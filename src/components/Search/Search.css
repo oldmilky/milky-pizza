@@ -6,11 +6,17 @@
 
 .search {
     border: 1px solid #A3A3A3;
-    width: 300px;
+    width: 320px;
     height: 45px;
     border-radius: 8px;
     display: flex;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search__container {
+    display: flex;
 }
 
 .search__input {
@@ -25,4 +31,15 @@
     outline: none;
     border: none;
     width: 250px;
+}
+
+.search__cancel {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    color: #000000;
+    margin: 0 8px 0 0;
+    cursor: pointer;
 }
