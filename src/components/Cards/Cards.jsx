@@ -6,14 +6,21 @@ import Categories from "../Categories/Categories";
 import Pagination from "../Pagination/Pagination";
 import { SearchContext } from "../../App";
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../../redux/slices/filterSlice";
 
 function Cards() {
+  const { searchValue } = useContext(SearchContext);
 
-  const { searchValue } = useContext(SearchContext)
+  const categoryId = useSelector((state) => state.filter.categoryId);
+  const dispatch = useDispatch();
+
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryId, setCategoryId] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortType, setSortType] = useState({
     name: "Популярности ↓",
@@ -67,7 +74,7 @@ function Cards() {
       <Categories
         categoryId={categoryId}
         sortType={sortType}
-        setCategoryId={(index) => setCategoryId(index)}
+        setCategoryId={onClickCategory}
         setSortType={(index) => setSortType(index)}
       />
       <h1 className="cards__title">Все пиццы</h1>
