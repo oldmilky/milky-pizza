@@ -6,32 +6,24 @@ import Categories from "../Categories/Categories";
 import Pagination from "../Pagination/Pagination";
 import { SearchContext } from "../../App";
 import { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId } from "../../redux/slices/filterSlice";
+import { useSelector } from "react-redux";
 
 function Cards() {
   const { searchValue } = useContext(SearchContext);
 
   const categoryId = useSelector((state) => state.filter.categoryId);
-  const dispatch = useDispatch();
-
-  const onClickCategory = (id) => {
-    dispatch(setCategoryId(id));
-  };
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: "Популярности ↓",
-    sortProperty: "rating",
-  });
+
+  const sortType = useSelector(state => state.filter.sort.sortProperty);
 
   useEffect(() => {
     setIsLoading(true);
 
-    const sortBy = sortType.sortProperty.replace("-", "");
-    const order = sortType.sortProperty.includes("-") ? "asc" : "desc";
+    const sortBy = sortType.replace("-", "");
+    const order = sortType.includes("-") ? "asc" : "desc";
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
@@ -46,7 +38,7 @@ function Cards() {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, searchValue, sortType.sortProperty, currentPage]);
+  }, [categoryId, searchValue, sortType.sortProperty, currentPage, sortType]);
 
   const skeletons = [...new Array(4)].map((_, index) => (
     <SkeletonLoader key={index} />
@@ -71,12 +63,7 @@ function Cards() {
 
   return (
     <>
-      <Categories
-        categoryId={categoryId}
-        sortType={sortType}
-        setCategoryId={onClickCategory}
-        setSortType={(index) => setSortType(index)}
-      />
+      <Categories />
       <h1 className="cards__title">Все пиццы</h1>
       <div className="cards">{isLoading ? skeletons : pizzas}</div>
       <Pagination setCurrentPage={(number) => setCurrentPage(number)} />

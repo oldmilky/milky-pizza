@@ -1,0 +1,18 @@
+{
+    "workbench.iconTheme": "bearded-icons",
+    "window.nativeTabs": true,
+    "editor.smoothScrolling": true,
+    "workbench.colorTheme": "Bearded Theme Vivid Black",
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "window.zoomLevel": 1,
+    "editor.fontSize": 13,
+}

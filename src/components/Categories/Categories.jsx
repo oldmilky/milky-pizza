@@ -1,22 +1,36 @@
 import { useState } from "react";
 import "./Categories.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setSort } from "../../redux/slices/filterSlice";
+import { setCategoryId } from "../../redux/slices/filterSlice";
 
-function Categories({ categoryId, setCategoryId, sortType, setSortType }) {
+function Categories() {
+
+  const dispatch = useDispatch();
+
+  const sort = useSelector(state => state.filter.sort);
+
+  const categoryId = useSelector((state) => state.filter.categoryId);
+
   const categories = ["Все", "Мясные", "Вегетарианская", "Гриль", "Острые"];
 
   const [activePopup, setActivePopup] = useState(false);
 
   const sortList = [
-    { name: "Популярности ↑", sortProperty: "rating" },
-    { name: "Популярности ↓", sortProperty: "-rating" },
-    { name: "Цене ↑", sortProperty: "price" },
-    { name: "Цене ↓", sortProperty: "-price" },
-    { name: "Алфавиту", sortProperty: "title" },
+    { name: "популярности ↑", sortProperty: "rating" },
+    { name: "популярности ↓", sortProperty: "-rating" },
+    { name: "цене ↑", sortProperty: "price" },
+    { name: "цене ↓", sortProperty: "-price" },
+    { name: "алфавиту", sortProperty: "title" },
   ];
 
-  const onClickSelected = (index) => {
-    setSortType(index);
+  const onClickSelected = (obj) => {
+    dispatch(setSort(obj))
     setActivePopup(false);
+  };
+
+  const onClickCategory = (id) => {
+    dispatch(setCategoryId(id));
   };
 
   return (
@@ -26,7 +40,7 @@ function Categories({ categoryId, setCategoryId, sortType, setSortType }) {
           {categories.map((value, index) => (
             <button
               key={index}
-              onClick={() => setCategoryId(index)}
+              onClick={() => onClickCategory(index)}
               className={
                 categoryId === index
                   ? "categories__button-active"
@@ -42,7 +56,7 @@ function Categories({ categoryId, setCategoryId, sortType, setSortType }) {
           onClick={() => setActivePopup(!activePopup)}
         >
           <p className="categories__sort">Сортировка по:</p>
-          <p className="categories__filter">{sortType.name}</p>
+          <p className="categories__filter">{sort.name}</p>
         </div>
         {activePopup && (
           <div className="categories-modal">
@@ -51,7 +65,7 @@ function Categories({ categoryId, setCategoryId, sortType, setSortType }) {
                 <button
                   key={index}
                   className={
-                    sortType.sortProperty === obj.sortProperty
+                    sort.sortProperty === obj.sortProperty
                       ? "categories-modal__button-active"
                       : "categories-modal__button"
                   }
