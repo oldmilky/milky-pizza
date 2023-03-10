@@ -1,12 +1,6 @@
-.search__logo {
-    width: 30px;
-    height: 30px;
-    padding: 0 5px 0 10px;
-}
-
 .search {
     border: 1px solid #A3A3A3;
-    width: 320px;
+    max-width: 320px;
     height: 45px;
     border-radius: 8px;
     display: flex;
@@ -42,4 +36,10 @@
     color: #000000;
     margin: 0 8px 0 0;
     cursor: pointer;
+}
+
+.search__logo {
+    width: 30px;
+    height: 30px;
+    padding: 0 5px 0 10px;
 }

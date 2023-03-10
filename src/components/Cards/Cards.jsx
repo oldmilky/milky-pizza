@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import Card from "./Card/Card";
 import SkeletonLoader from "./SketelonLoader";
 import "./Cards.css";
@@ -6,18 +7,24 @@ import Categories from "../Categories/Categories";
 import Pagination from "../Pagination/Pagination";
 import { SearchContext } from "../../App";
 import { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentPage } from "../../redux/slices/filterSlice";
 
 function Cards() {
   const { searchValue } = useContext(SearchContext);
 
   const categoryId = useSelector((state) => state.filter.categoryId);
+  const currentPage = useSelector((state) => state.filter.currentPage);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const dispatch = useDispatch();
 
-  const sortType = useSelector(state => state.filter.sort.sortProperty);
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number))
+  }
+
+  const sortType = useSelector((state) => state.filter.sort.sortProperty);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,16 +34,15 @@ function Cards() {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    fetch(
-      `https://63fb029b7a045e192b6151ab.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-    )
+    axios
+      .get(
+        `https://63fb029b7a045e192b6151ab.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+      )
       .then((res) => {
-        return res.json();
-      })
-      .then((arr) => {
-        setItems(arr);
+        setItems(res.data);
         setIsLoading(false);
       });
+
     window.scrollTo(0, 0);
   }, [categoryId, searchValue, sortType.sortProperty, currentPage, sortType]);
 
@@ -66,7 +72,7 @@ function Cards() {
       <Categories />
       <h1 className="cards__title">Все пиццы</h1>
       <div className="cards">{isLoading ? skeletons : pizzas}</div>
-      <Pagination setCurrentPage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} setCurrentPage={onChangePage} />
     </>
   );
 }
