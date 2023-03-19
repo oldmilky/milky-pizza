@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "./Categories.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../../redux/slices/filterSlice";
 import { setCategoryId } from "../../redux/slices/filterSlice";
+import { useEffect } from "react";
 
 function Categories() {
-
   const dispatch = useDispatch();
 
-  const sort = useSelector(state => state.filter.sort);
+  const sort = useSelector((state) => state.filter.sort);
 
   const categoryId = useSelector((state) => state.filter.categoryId);
 
@@ -25,13 +25,27 @@ function Categories() {
   ];
 
   const onClickSelected = (obj) => {
-    dispatch(setSort(obj))
+    dispatch(setSort(obj));
     setActivePopup(false);
   };
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
   };
+
+  const sortRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setActivePopup(false)
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="categories">
@@ -54,6 +68,7 @@ function Categories() {
         <div
           className="categories__wrap"
           onClick={() => setActivePopup(!activePopup)}
+          ref={sortRef}
         >
           <p className="categories__sort">Сортировка по:</p>
           <p className="categories__filter">{sort.name}</p>

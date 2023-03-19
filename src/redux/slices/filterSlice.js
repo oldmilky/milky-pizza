@@ -28,4 +28,3 @@ const filterSlice = createSlice({
 export const { setCategoryId, setSort, setCurrentPage } = filterSlice.actions;
 
 export default filterSlice.reducer;
-

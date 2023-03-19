@@ -4,8 +4,12 @@ import logo from "../../images/logo.svg";
 import cart from "../../images/cart__header.svg";
 import { NavLink } from "react-router-dom";
 import Search from "../Search/Search";
+import { useSelector } from "react-redux";
 
 function Header() {
+
+  const {items, totalPrice} = useSelector(state => state.cart);
+
   return (
     <div className="header">
       <div className="header__content">
@@ -21,9 +25,9 @@ function Header() {
         <Search />
         <NavLink className="header__link" to="/cart">
           <button className="header__cart">
-            0 ₽
+            {totalPrice} ₽
             <img className="header__cart_logo" src={cart} alt="cart" />
-            0
+            {items.length}
           </button>
         </NavLink>
       </div>
