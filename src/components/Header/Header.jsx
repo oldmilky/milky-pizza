@@ -10,6 +10,8 @@ function Header() {
 
   const {items, totalPrice} = useSelector(state => state.cart);
 
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+
   return (
     <div className="header">
       <div className="header__content">
@@ -27,7 +29,7 @@ function Header() {
           <button className="header__cart">
             {totalPrice} ₽
             <img className="header__cart_logo" src={cart} alt="cart" />
-            {items.length}
+            {totalCount}
           </button>
         </NavLink>
       </div>

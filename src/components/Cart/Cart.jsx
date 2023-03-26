@@ -1,12 +1,28 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Cart.css";
 import cart from "../../images/cart.svg";
 import trash from "../../images/trash.svg";
-import pizza from "../../images/pizza.svg";
+import CartItem from "./CartItem";
+import { useSelector, useDispatch } from "react-redux";
+import { clearItems } from "../../redux/slices/cartSlice";
+import CartEmpty from "./CartEmpty";
 
 function Cart() {
-  const [count, setCount] = useState(1);
+
+  const dispatch = useDispatch();
+
+  // const items = useSelector(state => state.cart.items);
+  const {items, totalPrice} = useSelector(state => state.cart);
+
+  const onClickClear = () => {
+    dispatch(clearItems())
+  }
+
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+
+  if (!totalPrice) {
+    return <CartEmpty />;
+  }
 
   return (
     <div className="cart">
@@ -16,60 +32,22 @@ function Cart() {
             <img className="cart__image_cart" src={cart} alt="cart" />
             <h1 className="cart__title">Корзина</h1>
           </div>
-          <div className="cart__wrapper">
+          <div className="cart__wrapper" onClick={onClickClear}>
             <img className="cart__image_trash" src={trash} alt="trash" />
             <h1 className="cart__title_trash">Очистить корзину</h1>
           </div>
         </div>
         <div className="cart-menu">
-          <div className="cart-menu__container">
-            <div className="cart-menu__wrap">
-              <img className="cart-menu__image" src={pizza} alt="pizza" />
-              <div className="cart-menu__wrapper">
-                <h2 className="cart-menu__title">Сырная</h2>
-                <p className="cart-menu__subtitle">тонкое тесто, 35см</p>
-              </div>
-            </div>
-            <div className="cart-menu__wrap">
-              <div
-                className="cart-menu__plus"
-                onClick={() => setCount(count + 1)}
-              >
-                +
-              </div>
-              <p className="cart-menu__count">{count}</p>
-              <div
-                className="cart-menu__minus"
-                onClick={() => setCount(count - 1)}
-              >
-                -
-              </div>
-            </div>
-            <p className="cart-menu__price">600 ₽</p>
-            <div className="cart-menu__cancel">x</div>
-          </div>
-
-          <div className="cart-menu__container">
-            <div className="cart-menu__wrap">
-              <img className="cart-menu__image" src={pizza} alt="pizza" />
-              <div className="cart-menu__wrapper">
-                <h2 className="cart-menu__title">Мясная</h2>
-                <p className="cart-menu__subtitle">пышное тесто, 25см</p>
-              </div>
-            </div>
-            <div className="cart-menu__wrap">
-              <div className="cart-menu__plus">+</div>
-              <p className="cart-menu__count">3</p>
-              <div className="cart-menu__minus">-</div>
-            </div>
-            <p className="cart-menu__price">1200 ₽</p>
-            <div className="cart-menu__cancel">x</div>
-          </div>
+          
+          {items.map((obj) => (
+            <CartItem key={obj.id} {...obj} />
+          ))}
+          
         </div>
         <div className="cart-order">
           <div className="cart-order__wrap">
             <p className="cart-order__title">
-              Всего пицц: <span className="cart-order__span-back">3 шт.</span>
+              Всего пицц: <span className="cart-order__span-back">{totalCount} шт.</span>
             </p>
             <NavLink className="cart__link" to="/">
               <button className="cart-order__button-back">
@@ -79,7 +57,7 @@ function Cart() {
           </div>
           <div className="cart-order__wrap">
             <p className="cart-order__title">
-              Сумма заказа: <span className="cart-order__span">1800 ₽</span>
+              Сумма заказа: <span className="cart-order__span">{totalPrice} ₽</span>
             </p>
             <button className="cart-order__button">Оплатить сейчас</button>
           </div>

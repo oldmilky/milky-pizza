@@ -64,6 +64,7 @@ function Cards() {
         price={obj.price}
         sizes={obj.sizes}
         types={obj.types}
+        id={obj.id}
       />
     ));
 
