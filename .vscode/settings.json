@@ -1,8 +1,12 @@
 {
-    "workbench.iconTheme": "bearded-icons",
+    "workbench.iconTheme": "icons",
     "window.nativeTabs": true,
     "editor.smoothScrolling": true,
-    "workbench.colorTheme": "Bearded Theme Vivid Black",
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    "editor.cursorBlinking": "expand",
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.colorTheme": "Bearded Theme HC Ebony",
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -14,5 +18,12 @@
     },
     "security.workspace.trust.untrustedFiles": "open",
     "window.zoomLevel": 1,
-    "editor.fontSize": 13,
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Source Code Pro",
+    "editor.indentSize": "tabSize",
+    "explorer.compactFolders": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "prettier.arrowParens": "avoid",
 }

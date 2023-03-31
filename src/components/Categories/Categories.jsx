@@ -1,16 +1,14 @@
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId, setSort } from "../../redux/slices/filterSlice";
 import "./Categories.css";
-import { useSelector, useDispatch } from "react-redux";
-import { setSort } from "../../redux/slices/filterSlice";
-import { setCategoryId } from "../../redux/slices/filterSlice";
-import { useEffect } from "react";
 
 function Categories() {
   const dispatch = useDispatch();
 
-  const sort = useSelector((state) => state.filter.sort);
+  const sort = useSelector(state => state.filter.sort);
 
-  const categoryId = useSelector((state) => state.filter.categoryId);
+  const categoryId = useSelector(state => state.filter.categoryId);
 
   const categories = ["Все", "Мясные", "Вегетарианская", "Гриль", "Острые"];
 
@@ -24,21 +22,21 @@ function Categories() {
     { name: "алфавиту", sortProperty: "title" },
   ];
 
-  const onClickSelected = (obj) => {
+  const onClickSelected = obj => {
     dispatch(setSort(obj));
     setActivePopup(false);
   };
 
-  const onClickCategory = (id) => {
+  const onClickCategory = id => {
     dispatch(setCategoryId(id));
   };
 
   const sortRef = useRef();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (!event.composedPath().includes(sortRef.current)) {
-        setActivePopup(false)
+        setActivePopup(false);
       }
     };
     document.body.addEventListener("click", handleClickOutside);

@@ -1,31 +1,28 @@
 import { useEffect } from "react";
-import Card from "./Card/Card";
-import SkeletonLoader from "./SketelonLoader";
-import "./Cards.css";
-import Categories from "../Categories/Categories";
-import Pagination from "../Pagination/Pagination";
-import { SearchContext } from "../../App";
-import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../redux/slices/filterSlice";
 import { fetchPizza } from "../../redux/slices/pizzaSlice";
+import Categories from "../Categories/Categories";
+import Pagination from "../Pagination/Pagination";
+import Card from "./Card/Card";
 import CardEmpty from "./CardEmpty";
+import "./Cards.css";
+import SkeletonLoader from "./SketelonLoader";
 
 function Cards() {
-  const { searchValue } = useContext(SearchContext);
-
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const currentPage = useSelector((state) => state.filter.currentPage);
-  const items = useSelector((state) => state.pizza.items);
-  const status = useSelector((state) => state.pizza.status);
+  const categoryId = useSelector(state => state.filter.categoryId);
+  const searchValue = useSelector(state => state.filter.searchValue);
+  const currentPage = useSelector(state => state.filter.currentPage);
+  const items = useSelector(state => state.pizza.items);
+  const status = useSelector(state => state.pizza.status);
 
   const dispatch = useDispatch();
 
-  const onChangePage = (number) => {
+  const onChangePage = number => {
     dispatch(setCurrentPage(number));
   };
 
-  const sortType = useSelector((state) => state.filter.sort.sortProperty);
+  const sortType = useSelector(state => state.filter.sort.sortProperty);
 
   const getPizza = async () => {
     const sortBy = sortType.replace("-", "");
@@ -48,13 +45,13 @@ function Cards() {
   ));
 
   const pizzas = items
-    .filter((obj) => {
+    .filter(obj => {
       if (obj.name.toLowerCase().includes(searchValue.toLowerCase())) {
         return true;
       }
       return false;
     })
-    .map((obj) => (
+    .map(obj => (
       <Card
         key={obj.id}
         title={obj.name}

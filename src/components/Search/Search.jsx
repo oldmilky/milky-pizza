@@ -1,16 +1,17 @@
-import "./Search.css";
-import search from "../../images/header__search_logo.svg";
-import { useCallback, useContext, useRef, useState } from "react";
-import { SearchContext } from "../../App";
 import debounce from "lodash.debounce";
+import { useCallback, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import search from "../../images/header__search_logo.svg";
+import { setSearchValue } from "../../redux/slices/filterSlice";
+import "./Search.css";
 
 function Search() {
-  const { setSearchValue } = useContext(SearchContext);
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const inputRef = useRef();
 
   const onClickClear = () => {
-    setSearchValue("");
+    dispatch(setSearchValue(value));
     setValue("");
     inputRef.current.focus();
   };
@@ -18,7 +19,7 @@ function Search() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const updateSearchValue = useCallback(
     debounce((str) => {
-      setSearchValue(str);
+      dispatch(setSearchValue(str));
     }, 150),
     []
   );
